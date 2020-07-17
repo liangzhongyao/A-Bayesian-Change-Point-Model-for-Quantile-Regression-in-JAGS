@@ -24,8 +24,12 @@ model{
  cp ~ dunif(0, 1.5)
 }
 "
+
+library(rjags)
+library(R2jags)
+
 qt = 0.9
-jags_data = list(y = y, x = x, p = qt)
+jags_data = list(y = y, x = x, p = qt) # import data
 params = c("alpha", "beta", "sigma", "cp", "mu")
 fit = jags(model.file = textConnection(jags_qr), data = jags_data, 
              n.iter = 100000, parameters.to.save = params)
